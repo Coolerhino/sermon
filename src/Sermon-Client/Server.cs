@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Sermon_Client
 {
-    //todo pobierz 100 losowych twittow papieza z twittera i z nich uloz XDDDDDDDD
+    //todo pobierz 100 losowych twittow papieza z twittera i z nich uloz 
+    // pobieranie z twittera oczywiscie za pomoca socketow i tcp, pobrac z wiresharka 
     //todo zaimplementuj fajny frontend z http://colorfulconsole.com/
     public class Server : IDisposable
     {

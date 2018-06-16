@@ -1,5 +1,9 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using Raven.Client.Documents;
+using Raven.Client.Documents.Session;
 using Sermon_Core.Communication;
+using Sermon_Core.DataAccess;
 
 namespace Sermon_Core
 {
@@ -7,6 +11,11 @@ namespace Sermon_Core
     {
         static void Main(string[] args)
         {
+            var services = new ServiceCollection();
+            services.AddSingleton<IDocumentStoreHolder>(new DocumentStoreHolder());
+            var container = services.BuildServiceProvider();
+            IoC.Services = container;
+            
             var connections = new Connections(4425);
             connections.Handle().Wait();
         }

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using Raven.Client.Documents;
+using Sermon_Core.DataAccess;
+using Sermon_Twitter;
 
 namespace Sermon_Core.Communication
 {
@@ -27,7 +30,12 @@ namespace Sermon_Core.Communication
             Accepting = false;
             System.Console.WriteLine("Server shutdown");
         }
-        public async Task Handle(){
+        public async Task Handle()
+        {
+            var document = new Documents();
+            var keys = document.GetKeys();
+            var api = new TwitterApi(keys);
+            api.GiveMePopeTweets();
             System.Console.WriteLine($"Starting TCP Server on port {Port}");
             Accepting = true;
             _socket.Listen(100);

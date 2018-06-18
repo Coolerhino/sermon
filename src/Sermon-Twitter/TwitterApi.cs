@@ -11,6 +11,8 @@ namespace Sermon_Twitter
         {
             _twitterService = new TwitterService(keys.ConsumerKey, keys.ConsumerKeySecret, keys.AccessToken, keys.AccessTokenSecret);
         }
+//dodaj funkcje ktora przyjmuje najnowszy id tweeta ktory jest w bazie danych i pobiera tylko nowsze
+//dodaj funkcje z parametrem w zaleznosci od jezyka
 
         public void GiveMePopeTweets()
         {

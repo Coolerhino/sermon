@@ -14,8 +14,10 @@ namespace Sermon_Twitter
 //dodaj funkcje ktora przyjmuje najnowszy id tweeta ktory jest w bazie danych i pobiera tylko nowsze
 //dodaj funkcje z parametrem w zaleznosci od jezyka
 
-        public void GiveMePopeTweets()
+        public void GiveMePopeTweets(string language = "en")
         {
+            // en, pl, it, es, lt, ar(tu bedzie hardkor), fr, de, pt
+            //get pope twitter username from that language
             var popeTweets =
                 _twitterService.ListTweetsOnUserTimeline(
                     new ListTweetsOnUserTimelineOptions() {ScreenName = "Pontifex", Count = 50});

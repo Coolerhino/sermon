@@ -10,7 +10,7 @@
     /// PROCEDAMUS [ends request]
     /// separated by \r\n
     /// If the server encounters error, it will respond with
-    /// PECCATUM MORTIFERUM
+    /// PECCATUM MORTIFERUM .
     /// If the request is correct, server should return a sermon text, terminated by
     /// AMEN
     /// To close connection, you can send

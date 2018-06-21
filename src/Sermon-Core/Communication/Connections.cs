@@ -35,7 +35,9 @@ namespace Sermon_Core.Communication
             var document = new Documents();
             var keys = document.GetKeys();
             var api = new TwitterApi(keys);
-            api.GiveMePopeTweets();
+            api.GiveMePopeTweets("Pontifex_ln");
+            api.GiveMePopeTweets("Pontifex_ar");
+
             System.Console.WriteLine($"Starting TCP Server on port {Port}");
             Accepting = true;
             _socket.Listen(100);

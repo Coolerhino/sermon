@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
 using Sermon_Core.Communication;
 using Sermon_Core.DataAccess;
+using Sermon_Twitter;
 
 namespace Sermon_Core
 {
@@ -15,6 +17,8 @@ namespace Sermon_Core
             services.AddSingleton<IDocumentStoreHolder>(new DocumentStoreHolder());
             var container = services.BuildServiceProvider();
             IoC.Services = container;
+            
+            Console.OutputEncoding = new UTF8Encoding();
             
             var connections = new Connections(4425);
             connections.Handle().Wait();

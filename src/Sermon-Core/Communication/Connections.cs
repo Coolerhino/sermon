@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Raven.Client.Documents;
 using Sermon_Core.DataAccess;
 using Sermon_Twitter;
+using Sermon_Core.Protocol;
 
 namespace Sermon_Core.Communication
 {
@@ -32,11 +33,9 @@ namespace Sermon_Core.Communication
         }
         public async Task Handle()
         {
-            var document = new Documents();
-            var keys = document.GetKeys();
-            var api = new TwitterApi(keys);
-            api.GiveMePopeTweets("Pontifex_ln");
-            api.GiveMePopeTweets("Pontifex_ar");
+            //var document = new Documents();
+            //var keys = document.GetKeys();
+            //var api = new TwitterApi(keys);
 
             System.Console.WriteLine($"Starting TCP Server on port {Port}");
             Accepting = true;
@@ -64,7 +63,12 @@ namespace Sermon_Core.Communication
             var length = await client.ReceiveAsync(segment, SocketFlags.None);
             var msg = Encoding.UTF8.GetString(segment.Array, 0, length);
             System.Console.WriteLine("received message:" + msg);
-            var asd = await client.SendAsync(segment.Slice(0, msg.Length), SocketFlags.None);
+            var response = new Process().Request(msg);
+            Array.Clear(buffer, 0, buffer.Length);
+            System.Console.WriteLine("Sending response");
+            buffer = Encoding.UTF8.GetBytes(response);
+            segment = new ArraySegment<byte> (buffer);
+            var asd = await client.SendAsync(segment.Slice(0, response.Length), SocketFlags.None);
         }
     }
 }

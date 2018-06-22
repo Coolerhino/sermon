@@ -14,7 +14,7 @@ namespace Sermon_Core.Protocol
             //wez kolekcje length zdan z bazy danych
             //wez losowy koniec z bazy danych
             // amen dokleja modul ktory wysyla requesta, tutaj bedzie tylko
-            return "";
+            return "It works";
         }
     }
 }

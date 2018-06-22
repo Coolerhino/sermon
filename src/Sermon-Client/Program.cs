@@ -12,17 +12,23 @@ namespace Sermon_Client
     {
         static void Main(string[] args)
         {
-            //var server = new Server("127.0.0.1", 4425);
-            //server.Send("EHLO WERLD");
+
             //var resp = server.Receive();
-            var font = FigletFont.Load("E:/Repos/sermon/src/Sermon-Client/res/isometric4.flf");
-            var figlet = new Figlet(font);
+            //var font = FigletFont.Load("E:/Repos/sermon/src/Sermon-Client/res/isometric4.flf");
+            //var figlet = new Figlet(font);
             WriteSermonWord();
             //Console.Write(figlet.ToAscii("Ser"), Color.Yellow);
             //Console.Write(figlet.ToAscii("mon"), Color.White);
             //Console.WriteLine(resp);
             var letter = CollectArguments();
             Console.WriteLine(letter.ToString());
+            var server = new Server("127.0.0.1", 4425);
+            server.Send("DOMINUS VOBISCUM");
+            var resp = server.Receive();
+            System.Console.WriteLine(resp);
+            server.Send(letter.ToString());
+            var rp = server.Receive();
+            System.Console.WriteLine(rp);
             Console.Read();
         }
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TweetSharp;
 
 namespace Sermon_Twitter
@@ -19,13 +21,25 @@ namespace Sermon_Twitter
             // en, pl, it, es, lt, ar(tu bedzie hardkor), fr, de, pt
             //get pope twitter username from that language
             var name = screenName;
+
+            //foreach (var tweet in popeTweets)
+            //{
+            //    Console.WriteLine(tweet.Text);
+            //}
+        }
+
+        public List<string> GiveMeMostRecentTweets(string screenName = "Pontifex")
+        {
             var popeTweets =
                 _twitterService.ListTweetsOnUserTimeline(
-                    new ListTweetsOnUserTimelineOptions() {ScreenName = screenName, Count = 50});
-            foreach (var tweet in popeTweets)
+                    new ListTweetsOnUserTimelineOptions() { ScreenName = screenName, Count = 200});
+            var list = new List<string>();
+            foreach (var item in popeTweets)
             {
-                Console.WriteLine(tweet.Text);
+                list.Add(item.Text);
             }
+
+            return list;
         }
     }
 }

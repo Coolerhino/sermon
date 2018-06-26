@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Raven.Client.Documents;
 using Sermon_Core.DataAccess;
+using Sermon_Core.Model;
 using Sermon_Twitter;
 using Sermon_Core.Protocol;
+using Sermon_Core.StringExtensions;
 
 namespace Sermon_Core.Communication
 {
@@ -36,6 +38,17 @@ namespace Sermon_Core.Communication
             //var document = new Documents();
             //var keys = document.GetKeys();
             //var api = new TwitterApi(keys);
+            //var sentences = api.GiveMeMostRecentTweets("Pontifex_ln");
+            //var tweets = new List<TweetInDatabase>();
+            //foreach (var sentence in sentences)
+            //{
+            //    var tweet = new TweetInDatabase() { Text = sentence.CleanTweet() };
+            //    tweets.Add(tweet);
+            //}
+            //document.StoreSermonTweetFragments(tweets, "ln");
+            var epis = new Epistula() { Preparatio = 20, Lingua = "ln", Modus = "pontifex" };
+            var proc = new Sermon();
+            Console.WriteLine(proc.Generate(epis));
 
             System.Console.WriteLine($"Starting TCP Server on port {Port}");
             Accepting = true;

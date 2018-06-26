@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Sermon-Twitter\Sermon-Twitter.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StringExtensions\" />
+  </ItemGroup>
+
 </Project>

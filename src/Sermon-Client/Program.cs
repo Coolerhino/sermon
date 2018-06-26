@@ -153,7 +153,7 @@ namespace Sermon_Client
                     "FR",
                     "DE",
                     "PT",
-                    "LT",
+                    "LN",
                     "AR"
                 };
                 // en, pl, it, es, lt, ar(tu bedzie hardkor), fr, de, pt

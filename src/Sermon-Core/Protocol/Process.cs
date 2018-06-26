@@ -10,7 +10,8 @@ namespace Sermon_Core.Protocol
                 var parse = new Parse();
                 var packet = parse.Packet(message);
                 if (packet == null) { return "PECCATUM MORTIFERUM";};
-                var sermon = new Sermon().Generate(packet);
+                var sermon = new Sermon().Generate(packet) + "AMEN";
+                return sermon;
             }
             return "PECCATUM MORTIFERUM";
         }

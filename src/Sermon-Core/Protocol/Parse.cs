@@ -8,7 +8,7 @@ namespace Sermon_Core.Protocol
     {
         public Epistula Packet(string request){
                 var lines = request.Split("\r\n").ToList();
-                var mode = lines[0];
+                var mode = lines[0].Replace("MODUS", "").TrimStart();
                 if (mode != "PONTIFEX" && mode != "SAPIENTIA"){ return null; };
                 if (mode == "PONTIFEX"){
                     var language = lines[1];

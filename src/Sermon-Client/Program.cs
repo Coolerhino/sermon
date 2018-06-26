@@ -13,23 +13,24 @@ namespace Sermon_Client
         static void Main(string[] args)
         {
 
-            //var resp = server.Receive();
-            //var font = FigletFont.Load("E:/Repos/sermon/src/Sermon-Client/res/isometric4.flf");
-            //var figlet = new Figlet(font);
             WriteSermonWord();
-            //Console.Write(figlet.ToAscii("Ser"), Color.Yellow);
-            //Console.Write(figlet.ToAscii("mon"), Color.White);
-            //Console.WriteLine(resp);
-            var letter = CollectArguments();
-            Console.WriteLine(letter.ToString());
-            var server = new Server("127.0.0.1", 4425);
-            server.Send("DOMINUS VOBISCUM");
-            var resp = server.Receive();
-            System.Console.WriteLine(resp);
-            server.Send(letter.ToString());
-            var rp = server.Receive();
-            System.Console.WriteLine(rp);
-            Console.Read();
+            
+            var server = new AsyncServer();
+            server.Connect();
+            while (true)
+            {
+                var letter = CollectArguments();
+                System.Console.WriteLine(server.GetSermon(letter.ToString()));
+                Console.Read();
+            }
+
+            //server.Send("DOMINUS VOBISCUM");
+            //var resp = server.Receive();
+            //System.Console.WriteLine(resp);
+            //server.Send(letter.ToString());
+            //var rp = server.Receive();
+            //System.Console.WriteLine(rp);
+
         }
 
         public static void WriteSermonWord()
@@ -227,8 +228,15 @@ namespace Sermon_Client
             Console.Clear();
             WriteSermonWord();
             System.Console.WriteLine("How long you need your text?");
-            finalLength = int.Parse(Console.ReadLine()); 
+            var length = Console.ReadLine();
+            var lengthSuccess = int.TryParse(length, out finalLength);
+            if (!lengthSuccess)
+            {
+                finalLength = 10;
+            }
             selectedMode = moduses[selectedModeIndex];
+            Console.Clear();
+            WriteSermonWord();
             return new Epistula()
             {
                 Modus = selectedMode,

@@ -46,9 +46,9 @@ namespace Sermon_Core.Communication
             //    tweets.Add(tweet);
             //}
             //document.StoreSermonTweetFragments(tweets, "ln");
-            var epis = new Epistula() { Preparatio = 20, Lingua = "ln", Modus = "pontifex" };
-            var proc = new Sermon();
-            Console.WriteLine(proc.Generate(epis));
+            //var epis = new Epistula() { Preparatio = 20, Lingua = "ln", Modus = "pontifex" };
+            //var proc = new Sermon();
+            //Console.WriteLine(proc.Generate(epis));
 
             System.Console.WriteLine($"Starting TCP Server on port {Port}");
             Accepting = true;
@@ -81,7 +81,7 @@ namespace Sermon_Core.Communication
             System.Console.WriteLine("Sending response");
             buffer = Encoding.UTF8.GetBytes(response);
             segment = new ArraySegment<byte> (buffer);
-            var asd = await client.SendAsync(segment.Slice(0, response.Length), SocketFlags.None);
+            var asd = await client.SendAsync(segment.Slice(0, segment.Count), SocketFlags.None);
         }
     }
 }

@@ -19,9 +19,13 @@ namespace Sermon_Core
             IoC.Services = container;
             
             Console.OutputEncoding = new UTF8Encoding();
-            
-            var connections = new Connections(4425);
-            connections.Handle().Wait();
+            var connections = new AsyncConnections();
+            connections.Setup();
+            Console.Read();
+
+            //var connections = new Connections(4425);
+            //connections.Handle().Wait();
+
         }
     }
 }

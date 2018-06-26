@@ -14,14 +14,16 @@ namespace Sermon_Core.Protocol
             var language = request.Lingua.ToLower();
             var doc = new Documents();
             var fragments = doc.GetSermonTweetFragment(language, length);
-            //zrob stringa
-            //wez losowy poczatek z bazy danych
-            //wez kolekcje length zdan z bazy danych
-            //wez losowy koniec z bazy danych
-            // amen dokleja modul ktory wysyla requesta, tutaj bedzie tylko
-            var sentences = string.Join(" ", fragments.Select(t => t.Text));
-            //var sentences = Convert.ToString(fragments.Select(t => t.Text).ToList());
-            return sentences;
+
+            var sent = "";
+            fragments.ForEach(x => sent += x.Text);
+            //var sentences = string.Join("", fragments.Select(t => t.Text));
+            return sent;
         }
     }
 }
+//zrob stringa
+//wez losowy poczatek z bazy danych
+//wez kolekcje length zdan z bazy danych
+//wez losowy koniec z bazy danych
+// amen dokleja modul ktory wysyla requesta, tutaj bedzie tylko
